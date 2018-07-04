@@ -1,5 +1,5 @@
 ## clip_to_county.py
-## 20180704
+## 20180704a
 
 head = """{
   "type":"FeatureCollection",
@@ -30,12 +30,14 @@ with open('Wisconsin.json', 'r') as in_file:
                 
                 if str(i/10.0) in line:
                     lon = True
+                    break
 
             for i in range(458, 467):
                 # Range is in tenths of a degree
                 
                 if str(i/10.0) in line:
                     lat = True
+                    break
 
             if lon and lat:
                 out_file.write(line)
