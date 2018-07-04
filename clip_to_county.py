@@ -1,4 +1,5 @@
 ## clip_to_county.py
+## 20180704
 
 head = """{
   "type":"FeatureCollection",
@@ -12,23 +13,31 @@ tail = """
 """
 
 
-with open('Wisconsin.json', 'r') as i:
-    with open('iron.json', 'w') as o:
-        o.write(head)
+with open('Wisconsin.json', 'r') as in_file:
+  # Replace input file name as needed
+  
+    with open('iron.json', 'w') as out_file:
+        # Replace output file name as needed
         
-        for line in i:
+        out_file.write(head)
+        
+        for line in in_file:
             lon = False
             lat = False
-            for i in range(-907, -897): # Tenths of degree
-                j = str(i/10.0)
-                if j in line:
+
+            for i in range(-907, -897):
+                # Range is in tenths of a degree
+                
+                if str(i/10.0) in line:
                     lon = True
 
-            for i in range(458, 467): # Tenths of degree
-                j = str(i/10.0)
-                if j in line:
+            for i in range(458, 467):
+                # Range is in tenths of a degree
+                
+                if str(i/10.0) in line:
                     lat = True
 
             if lon and lat:
-                o.write(line)
-        o.write(tail)
+                out_file.write(line)
+
+        out_file.write(tail)
